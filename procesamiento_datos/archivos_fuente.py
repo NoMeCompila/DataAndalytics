@@ -8,14 +8,14 @@ hoy = str(datetime.today().date()) #se parsea la fecha a un formato string
 
 def get_cinema_data():
     """hace un get a la api de datos abiertos y lo guarda en un archivo json"""
-    url = "http://datos.gob.ar/api/3/action/datastore_search?resource_id=cultura_4207def0-2ff7-41d5-9095-d42ae8207a5d"
+    url = "http://datos.gob.ar/api/3/action/datastore_search?resource_id=cultura_392ce1a8-ef11-4776-b280-6f1c7fae16ae"
     r = requests.get(url)
     cinema_data  = r.json()
     return cinema_data 
 
 def get_museum_data():
     """hace un get a la api de datos abiertos y lo guarda en un archivo json"""
-    url = "http://datos.gob.ar/api/3/action/datastore_search?resource_id=cultura_392ce1a8-ef11-4776-b280-6f1c7fae16ae"
+    url = "http://datos.gob.ar/api/3/action/datastore_search?resource_id=cultura_4207def0-2ff7-41d5-9095-d42ae8207a5d"
     r = requests.get(url)
     museum_data  = r.json()
     return museum_data
@@ -33,12 +33,12 @@ def get_all_data():
     get_museum_data()
     get_library_data()
 
-def save_museum_data():
+def save_cinema_data():
     """crea un archivo json y graba en el fichero la informacion de la peticion get"""
     with open('data/cine/2022-febrero/cines-'+hoy+'.json','w') as f1:
         json.dump(get_cinema_data(), f1)
 
-def save_cinema_data():
+def save_museum_data():
     """crea un archivo json y graba en el fichero la informacion de la peticion get"""
     with open('data/museo/2022-febrero/museos-'+hoy+'.json','w') as f2:
         json.dump(get_museum_data(), f2)
